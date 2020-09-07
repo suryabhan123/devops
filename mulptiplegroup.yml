@@ -1,0 +1,17 @@
+---
+#run this playbook on multiple group with different tasks
+- hosts: web 
+  become: yes
+  tasks:
+  - name: run this on web group
+    file:
+      path: /tmp/web
+      state: directory
+#  when: "'web' in {{ hosts }}"
+- hosts: db
+  tasks:
+  - name: run this on db group
+    file:
+      path: /tmp/db
+      state: directory
+#  when: "'db' in {{ hosts }}"

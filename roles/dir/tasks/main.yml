@@ -1,0 +1,15 @@
+---
+# tasks file for dir
+  - name: create multiple directory
+    file:
+      path: /tmp/{{ item }}
+      state: directory
+    with_items:
+      - "{{ app }}"
+      - "{{ man }}"
+      - "{{ gra }}"
+      - "{{ desh }}"
+  - name: create variable names
+    file:
+      path: /tmp/{{ nation }}
+      state: directory

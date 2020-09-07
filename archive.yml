@@ -1,0 +1,12 @@
+#archive and unarchive run on host machine
+---
+- hosts: web
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: archive the file
+    archive:
+      path: /tmp/hosts 
+#      - /Users/surya/Documents/coding/passwd
+      dest: /tmp/passwd.zip
+      format: zip
