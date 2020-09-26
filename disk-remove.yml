@@ -1,0 +1,33 @@
+---
+- hosts: db
+  become: yes
+  gather_facts: no
+
+  tasks:
+  - name: unmount the share
+    mount:
+      path: /mnt/apps
+      src: /dev/apps_vg/apps_lv
+      fstype: xfs
+      state: unmounted
+
+  - name: delete LV
+    lvol:
+      vg: apps_vg
+      lv: apps_lv
+      size: 100%FREE
+      state: absent
+      force: yes
+
+  - name: delete VG
+    lvg:
+      vg: apps_vg
+      pvs: /dev/sdb1
+      state: absent
+
+  - name: Disk to remove from the system
+    parted:
+      device: /dev/sdb
+      number: 1
+      flags: [ lvm ]
+      state: absent

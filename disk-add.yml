@@ -1,0 +1,35 @@
+---
+- hosts: db
+  become: yes
+  gather_facts: no
+
+  tasks:
+  - name: add disk to the system
+    parted:
+      device: /dev/sdb
+      number: 1
+      flags: [ lvm ]
+      state: present
+
+  - name: create VG
+    lvg:
+      vg: apps_vg
+      pvs: /dev/sdb1
+
+  - name: create LV
+    lvol:
+      vg: apps_vg
+      lv: apps_lv
+      size: 100%FREE
+
+  - name: create filesystem
+    filesystem:
+      fstype: xfs
+      dev: /dev/apps_vg/apps_lv
+
+  - name: mount point
+    mount:
+      path: /mnt/apps
+      src: /dev/apps_vg/apps_lv
+      fstype: xfs
+      state: mounted
