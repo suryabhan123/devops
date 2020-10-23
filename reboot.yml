@@ -1,0 +1,7 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: reboot the server
+    command: reboot
