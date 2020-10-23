@@ -1,0 +1,16 @@
+---
+- hosts: web
+  become: yes
+
+  tasks:
+  - name: collect the hosts depend upon OS distribution
+     group_by:
+        key: os_{{ ansible_facts['distribution'] }}
+
+# now we can perform the tasks on CentOS
+- hosts: os_CentOS
+  gather_facts: no
+  tasks:
+  - name: create the files and directory
+    file:
+      path: /tmp/{apple,mango,tomato}
