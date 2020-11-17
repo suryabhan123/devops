@@ -1,11 +1,12 @@
 ---
+#collect the OS distribution related data and based on distribution run the commands
 - hosts: web
   become: yes
 
   tasks:
   - name: collect the hosts depend upon OS distribution
-     group_by:
-        key: os_{{ ansible_facts['distribution'] }}
+    group_by:
+      key: os_{{ ansible_facts['distribution'] }}
 
 # now we can perform the tasks on CentOS
 - hosts: os_CentOS
@@ -13,4 +14,9 @@
   tasks:
   - name: create the files and directory
     file:
-      path: /tmp/{apple,mango,tomato}
+      path: /tmp/{{ item }}
+      state: touch
+    with_items:
+      - apple
+      - mango
+      - orange

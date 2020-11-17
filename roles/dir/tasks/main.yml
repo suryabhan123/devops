@@ -5,10 +5,10 @@
       path: /tmp/{{ item }}
       state: directory
     with_items:
-      - "{{ app }}"
-      - "{{ man }}"
-      - "{{ gra }}"
-      - "{{ desh }}"
+      - app
+      - man
+      - gra
+      - desh
   - name: create variable names
     file:
       path: /tmp/{{ nation }}
