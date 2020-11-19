@@ -1,0 +1,20 @@
+---
+#Linux server security patching playbook
+- hosts: web
+  gather_facts: false
+  become: yes
+  tasks:
+  - name: yum install the packages
+    yum:
+      name: '*'
+      state: latest
+      security: yes
+
+  - name: reboot the server
+    reboot:
+       msg: "Reboot initiated by Ansible for security updates"
+       connect_timeout: 5
+       reboot_timeout: 300
+       pre_reboot_delay: 0
+       post_reboot_delay: 30
+       test_command: uptime
