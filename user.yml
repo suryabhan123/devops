@@ -3,6 +3,9 @@
   become: yes
   gather_facts: false
 
+#  environment:
+#    kaka: Hanuman
+
   tasks:
   - name: adding variables in bash_profile
     lineinfile:
@@ -12,10 +15,12 @@
 
   - name: re-read the bash_profile
     shell: source ~/.bash_profile
+    args:
+      executable: /bin/bash
     become_user: test1
 
   - name: register the value
-    shell: echo $kaka
+    shell: "echo $kaka"
     become_user: test1
     register: ka
 
