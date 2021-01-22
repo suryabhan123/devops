@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+
+  environment:
+    test: Mango-apple
+
+  tasks:
+  - name: print the variables
+    command: "echo $test"
+    register: test
+
+  - name: give the output
+    debug:
+      var: test.stdout
