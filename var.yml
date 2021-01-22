@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: web
 
   environment:
     test: Mango-apple
