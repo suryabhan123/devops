@@ -1,0 +1,22 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: false
+
+  tasks:
+  - name: adding variables in bash_profile
+    lineinfile:
+      path: ~/.bash_profile
+      line: 'export kaka=Hanuman'
+    become_user: test1
+
+  - name: re-read the bash_profile
+    shell: source ~/.bash_profile
+    become_user: test1
+
+  - name: register the value
+    shell: echo $kaka
+    become_user: test1
+    register: ka
+
+  - debug: var=ka.stdout
