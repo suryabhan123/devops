@@ -1,0 +1,14 @@
+---
+# - hosts: web
+#   # become: yes
+#   # gather_facts: false
+#
+#   tasks:
+#
+#   - name: add the task 1
+#     include_tasks: user1.yml
+#
+#   - name: add second task
+#     include_tasks: user.yml
+- import_playbook: user1.yml
+- import_playbook: user.yml

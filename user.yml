@@ -3,25 +3,21 @@
   become: yes
   gather_facts: false
 
-#  environment:
-#    kaka: Hanuman
+  # environment:
+  #   kaka: Hanuman
+
+  #vars:
+  #  kaka: Hanuman
 
   tasks:
-  - name: adding variables in bash_profile
-    lineinfile:
-      path: ~/.bash_profile
-      line: 'export kaka=Hanuman'
+  - name: read the profile files
+    shell: source /etc/profile
     become_user: test1
 
-  - name: re-read the bash_profile
-    shell: source ~/.bash_profile
-    args:
-      executable: /bin/bash
+  - name: get the output again
+    command: /bin/echo $kaka
+    become: true
     become_user: test1
+    register: ki
 
-  - name: register the value
-    shell: "echo $kaka"
-    become_user: test1
-    register: ka
-
-  - debug: var=ka.stdout
+  - debug: var=ki.stdout

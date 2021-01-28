@@ -1,0 +1,26 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: false
+
+  vars:
+    kaka: Ram
+
+  tasks:
+
+  - name: adding variables in bash_profile
+    lineinfile:
+      path: /etc/profile
+      line: 'export kaka={{ kaka }}'
+    # become_user: test1
+
+  - name: re-read the bash_profile
+    shell: source /etc/profile
+
+  - name: give the output
+    command: sudo su - test1; echo $kaka
+    # become: yes
+    # become_user: test1
+    register: ka
+
+  - debug: var=ka.stdout
