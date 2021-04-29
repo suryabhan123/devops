@@ -2,13 +2,12 @@
   tasks:
   - name: create the cron for list the files in /tmp
     copy:
-      src: files/list.sh
+      src: list.sh
       dest: /tmp/
 
     cron:
       name: list the files in tmp directory
-      job: sh /tmp/list.sh
-
+      job: "sh /tmp/list.sh"
       month: *
       day: 30
       hour: 17
