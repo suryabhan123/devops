@@ -6,10 +6,10 @@
       dest: /tmp/
 
     cron:
-      name: list the files in tmp directory
+      name: "list the files in tmp directory"
       job: "sh /tmp/list.sh"
-      month: *
-      day: 30
-      hour: 17
-      minute: 05
-      weekday: *
+      month: "*"
+      day: "30"
+      hour: "17"
+      minute: "05"
+      weekday: "*"
