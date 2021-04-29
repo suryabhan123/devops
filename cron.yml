@@ -8,6 +8,7 @@
        src: files/list.sh
        dest: /tmp/
 
+   - name: create the crontab entry
      cron:
        name: "list the files in tmp directory"
        job: "sh /tmp/list.sh"
