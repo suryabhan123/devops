@@ -1,18 +1,18 @@
 ---
-- hosts: all
-  become: yes
+ - hosts: all
+   become: yes
 
-  tasks:
-  - name: create the cron for list the files in /tmp
-    copy:
-      src: list.sh
-      dest: /tmp/
+   tasks:
+   - name: create the cron for list the files in /tmp
+     copy:
+       src: list.sh
+       dest: /tmp/
 
-    cron:
-      name: "list the files in tmp directory"
-      job: "sh /tmp/list.sh"
-      month: "*"
-      day: "30"
-      hour: "17"
-      minute: "05"
-      weekday: "*"
+     cron:
+       name: "list the files in tmp directory"
+       job: "sh /tmp/list.sh"
+       month: "*"
+       day: "30"
+       hour: "17"
+       minute: "05"
+       weekday: "*"
