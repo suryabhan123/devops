@@ -5,7 +5,7 @@
    tasks:
    - name: create the cron for list the files in /tmp
      copy:
-       src: list.sh
+       src: files/list.sh
        dest: /tmp/
 
      cron:
