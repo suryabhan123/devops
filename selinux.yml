@@ -1,0 +1,9 @@
+---
+ - hosts: all
+   become: yes
+
+   tasks:
+   - name: Change the SELINUX values
+     selinux:
+       policy: targeted
+       state: permissive
