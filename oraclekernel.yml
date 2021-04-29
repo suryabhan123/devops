@@ -1,0 +1,14 @@
+---
+ - hosts: all
+   become: yes
+
+   tasks:
+   - name: Adding Oracle Kernel Parameters
+     lineinfile:
+       dest: /etc/sysctl.d/99-sysctl.conf
+       line: '{{ item }}'
+     with_items:
+       - '#### Oracle Install related kernel parameters ###'
+       - 'vm.swappiness = 1'
+       - 'vm.dirty_background_ratio = 3'
+       - 'vm.dirty_ratio = 80'
