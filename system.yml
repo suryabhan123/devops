@@ -4,4 +4,4 @@
 
   tasks:
   - name: Add the crontab tasks
-    include_tasks: cron.yml
+    import_playbook: cron.yml
