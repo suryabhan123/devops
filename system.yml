@@ -1,7 +1,2 @@
 ---
-- hosts: all
-  become: yes
-
-  tasks:
-  - name: Add the crontab tasks
-    import_playbook: cron.yml
+- import_playbook: cron.yml
