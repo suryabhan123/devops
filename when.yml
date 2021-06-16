@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: list the /tmp directory
+    ansible.builtin.command: shutdown -h now
+    register: tmp
+    when:
+      - ansible_facts['distribution'] == "CentOS"
+      - ansible_facts['distribution_major_version'] == "7"
+
+  - debug:
+      var: tmp.stdout
