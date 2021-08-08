@@ -4,4 +4,8 @@
   gather_facts: no
   tasks:
   - name: reboot the server
-    command: reboot
+    reboot:
+      msg: "Reboot iniated with ansible"
+      pre_reboot_delay: 10
+      post-reboot_delay: 180
+      test_command: uptime
