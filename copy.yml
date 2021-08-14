@@ -8,5 +8,5 @@
       copy:
         src: /tmp/etc
         dest: /tmp/abc
-        recurse: yes
+        directory_mode: yes
         remote_src: yes
