@@ -1,0 +1,10 @@
+---
+  - hosts: all
+    become: yes
+    gather_facts: false
+
+    tasks:
+    - name: install the packages
+      yum:
+        name: rsync
+        state: installed
