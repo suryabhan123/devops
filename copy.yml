@@ -1,0 +1,12 @@
+---
+  - hosts: all
+    become: yes
+    gather_facts: false
+
+    tasks:
+    - name: copy the directory
+      copy:
+        src: /tmp/etc
+        dest: /tmp/abc
+        recurse: yes
+        remote_src: yes
