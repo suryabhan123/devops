@@ -1,0 +1,27 @@
+---
+  - hosts: all
+    become: yes
+
+    tasks:
+    - name: check the running services
+      service_facts:
+
+    - debug:
+        var: ansible_facts.services["httpd.service"]["state"]
+      register: ls
+
+    - name: check the httpd
+      stat:
+        path: "/usr/lib/systemd/system/httpd.service"
+      register: lls
+
+    - name: create files
+      file:
+        path: /tmp/http
+        state: touch
+      when: lls.stat.exists
+
+    - name: disable the httpd
+      systemd:
+        name: httpd
+        enabled: false
