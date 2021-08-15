@@ -1,0 +1,17 @@
+---
+  - hosts: all
+    become: yes
+
+    tasks:
+    - name: copy password files
+      copy:
+        src: /etc/passwd
+        dest: /tmp/
+        remote_src: yes
+
+    - name: change the line
+      lineinfile:
+        path: /tmp/passwd
+        regexp: '^test1'
+        line: 'bharat ratan'
+        backup: yes
