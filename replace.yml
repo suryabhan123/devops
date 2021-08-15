@@ -1,12 +1,20 @@
 ---
-- hosts: web
+- hosts: all
   tasks:
   - name: copy file
     copy:
-     src: passwd
+     src: /etc/passwd
      dest: /tmp/passwd
-  - name: Replace example
+     remote_src: yes
+
+  # - name: Replace example
+  #   replace:
+  #    path: /tmp/passwd
+  #    regexp: 'timed'
+  #    replace: "shririta"
+
+  - name: replace the word
     replace:
-     path: /tmp/passwd
-     regexp: 'timed'
-     replace: "shririta"
+      path: /tmp/passwd
+      regexp: 'test1'
+      replace: "tata"

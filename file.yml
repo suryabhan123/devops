@@ -1,9 +1,17 @@
 ---
 - hosts: all
+  become: yes
+
   tasks:
-  - name: delete the 7 day old files from the /tmp
-    shell: find /tmp -type f -name passwd -mtime +7 | xargs rm -f
+  # - name: delete the 7 day old files from the /tmp
+  #   shell: find /tmp -type f -name passwd -mtime +7 | xargs rm -f
+
   - name: create new file in /tmp
     file:
       path: /tmp/apple
       state: touch
+
+  - name: delete the directory
+    file:
+      path: /tmp/pbc
+      state: absent
