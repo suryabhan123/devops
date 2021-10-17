@@ -1,11 +1,13 @@
 ---
 - hosts: all
+  become: yes
+
   tasks:
-  - name: copy file
-    copy:
-     src: /etc/passwd
-     dest: /tmp/passwd
-     remote_src: yes
+  # - name: copy file
+  #   copy:
+  #    src: /etc/passwd
+  #    dest: /tmp/passwd
+  #    remote_src: yes
 
   # - name: Replace example
   #   replace:
@@ -15,6 +17,12 @@
 
   - name: replace the word
     replace:
-      path: /tmp/passwd
-      regexp: 'test1'
-      replace: "tata"
+      path: /tmp/standalone.xml
+      regexp: 'ManagementRealm'
+      replace: 'krishna1'
+
+  - name: two
+    replace:
+      path: /tmp/standalone.xml
+      regexp: 'true'
+      replace: 'radhekrishna'

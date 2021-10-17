@@ -3,15 +3,22 @@
     become: yes
 
     tasks:
-    - name: copy password files
-      copy:
-        src: /etc/passwd
-        dest: /tmp/
-        remote_src: yes
+    # - name: copy password files
+    #   copy:
+    #     src: /etc/passwd
+    #     dest: /tmp/
+    #     remote_src: yes
 
-    - name: change the line
+    # - name: change the line
+    #   lineinfile:
+    #     path: /tmp/standalone.xml
+    #     regexp: 'application-roles.properties'
+    #     line: 'bharat ratan jay hanuman jay shri ram'
+    #     backup: yes
+
+    - name: Replace the world
       lineinfile:
-        path: /tmp/passwd
-        regexp: '^test1'
-        line: 'bharat ratan'
-        backup: yes
+        dest: /tmp/hello.txt
+        regexp: '^(hello)world$'
+        line: '\g<>1030'
+        backrefs: true

@@ -1,0 +1,15 @@
+---
+- name: Manage User Account
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+  - name: Update User
+    user:
+      name: "{{ user_name }}"
+      state: present
+      generate_ssh_key: true
+  - name: Password-less access for operator
+    copy: 
+      src: tux
+      dest: /etc/sudoers.d/tux 

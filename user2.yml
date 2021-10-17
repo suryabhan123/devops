@@ -1,0 +1,13 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: false
+
+  tasks:
+  - name: create the user
+    user:
+      name: "{{ user_name }}"
+      shell: /bin/bash
+      state: present
+      password: "{{ 'Password1' | password_hash('sha512') }}"
+      update_password: on_create

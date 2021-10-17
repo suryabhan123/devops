@@ -1,0 +1,13 @@
+---
+  - hosts: all
+    become: yes
+    gather_facts: yes
+
+    tasks:
+    - name: Print hosts details
+      debug:
+        msg: "{{ item }}"
+      loop:
+        - "{{ ansible_hostname }}"
+        - "{{ ansible_distribution }}"
+        - "{{ ansible_distribution_version }}"

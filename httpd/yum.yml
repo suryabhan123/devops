@@ -1,0 +1,19 @@
+---
+  - hosts: all
+    become: yes
+    gather_facts: false
+    
+    tasks:
+    - name: read the variables
+      include_vars:
+        file: version.yml
+
+    - name: install the packages
+      yum:
+        name: "{{ apache_pkg }}"
+        state: present
+ 
+    - name: create the directory
+      file:
+        path: "/tmp/{{ apache_pkg }}"
+        state: directory

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  - name: manage the /etc/motd
+    copy:
+      dest: /etc/motd
+      content: |
+         Jay shri krishna

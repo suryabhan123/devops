@@ -6,7 +6,7 @@
     tasks:
     - name: copy the directory
       copy:
-        src: /tmp/etc
-        dest: /tmp/abc
-        directory_mode: yes
-        remote_src: yes
+        src: /tmp/standalone.rtf
+        dest: /tmp/
+        # directory_mode: yes
+        # remote_src: yes
