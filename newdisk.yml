@@ -1,0 +1,36 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: false
+
+  tasks:
+  - name: find the new disk
+    shell: lsblk | grep 260 | awk '{ print $1 }'
+    register: disk
+
+  - debug:
+      msg="{{ disk.stdout }}"
+
+  - name: add entry
+    shell: echo "{{ disk.stdout }}" > /tmp/apple
+
+  - name: create physical volume
+    parted:
+      device: "/dev/{{ disk.stdout }}"
+      number: 1
+      flags: [ lvm ]
+      state: present
+    run_once: yes
+  #
+  # - name: add the new disk to vg
+  #   lvg:
+  #     vg: "{{ datavg }}"
+  #     pvs: /dev/sdb1,/dev/sdc1
+  #     # pvresize: yes
+  #
+  # - name: increase the logical volume
+  #   lvol:
+  #     vg: "{{ datavg }}"
+  #     lv: "{{ lvname }}"
+  #     size: +100%FREE
+  #     resizefs: true
