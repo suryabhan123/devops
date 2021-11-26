@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: list the /tmp directory
+    stat:
+      path: /test
+    register: p
+
+  - debug:
+      msg: "{{ p.stat.isdir }}"
+
+  - name: run the newdisk.yml
+    include: newdisk.yml
+    # when: p.stat.isdir is undefined
+    when: register.subtask is undefined

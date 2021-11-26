@@ -1,36 +1,54 @@
 ---
-- hosts: all
-  become: yes
-  gather_facts: false
-
-  tasks:
+# - hosts: all
+#   become: yes
+#   gather_facts: false
+#
+#   tasks:
   - name: find the new disk
-    shell: lsblk | grep 260 | awk '{ print $1 }'
+    shell: lsblk | grep disk | grep 260 | awk '{ print $1 }'
     register: disk
 
   - debug:
       msg="{{ disk.stdout }}"
 
-  - name: add entry
-    shell: echo "{{ disk.stdout }}" > /tmp/apple
-
-  - name: create physical volume
-    parted:
-      device: "/dev/{{ disk.stdout }}"
-      number: 1
-      flags: [ lvm ]
-      state: present
-    run_once: yes
+  # - name: add entry
+  #   shell: echo "{{ disk.stdout }}" > /tmp/apple
+  #
+  # - name: create physical volume
+  #   parted:
+  #     device: "/dev/{{ disk.stdout }}"
+  #     number: 1
+  #     flags: [ lvm ]
+  #     state: present
+  #   run_once: yes
   #
   # - name: add the new disk to vg
   #   lvg:
-  #     vg: "{{ datavg }}"
-  #     pvs: /dev/sdb1,/dev/sdc1
+  #     vg: datavg
+  #     pvs: "/dev/{{ disk.stdout }}1"
   #     # pvresize: yes
   #
   # - name: increase the logical volume
   #   lvol:
-  #     vg: "{{ datavg }}"
-  #     lv: "{{ lvname }}"
+  #     vg: datavg
+  #     lv: lvapps
   #     size: +100%FREE
-  #     resizefs: true
+  #     force: yes
+  #
+  # - name: create a filesystem
+  #   filesystem:
+  #     fstype: xfs
+  #     dev: /dev/datavg/lvapps
+  #
+  # - name: create directory
+  #   file:
+  #     path: /test
+  #     state: directory
+  #     mode: '0755'
+  #
+  # - name: mount the partition
+  #   mount:
+  #     path: /test
+  #     src: /dev/datavg/lvapps
+  #     fstype: xfs
+  #     state: mounted
