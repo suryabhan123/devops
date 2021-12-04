@@ -1,0 +1,1 @@
+apple={{ ansible_hostname }}

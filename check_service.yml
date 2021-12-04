@@ -1,0 +1,12 @@
+---
+ - hosts: all
+   become: yes
+   gather_facts: yes
+
+   tasks:
+   - name: check the service status
+     service_facts:
+     register: services_state
+
+   - debug:
+       msg: "{{ services_state }}"

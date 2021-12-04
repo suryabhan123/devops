@@ -1,0 +1,21 @@
+---
+ - hosts: all
+   become: yes
+   gather_facts: yes
+
+   tasks:
+   # - name: check the service status
+   #   systemd:
+   #     name: sshd.service
+   #   register: services_state
+   #
+   # - debug:
+   #     msg: "{{ services_state.status.ActiveState }}"
+
+   - name: check the services
+     service_facts:
+
+   - debug:
+       var: ansible_facts.services["sshd.service"]
+     # with_items:
+     #   - sshd

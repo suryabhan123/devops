@@ -1,0 +1,15 @@
+---
+  - hosts: all
+    become: yes
+    gather_facts: false
+
+    vars:
+      ansible_hostname: apple
+
+    tasks:
+    - name: copy the file with variables
+      template:
+        src: test
+        dest: /tmp/
+        # directory_mode: yes
+        # remote_src: yes

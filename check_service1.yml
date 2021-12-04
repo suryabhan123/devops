@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+  - name: Gathering service facts
+    service_facts:
+      # name: tuned.service
+    register: services_state
+  # - debug: var=services_state.ansible_fact.services.netconsole.state
+  # - debug: var=services_state.ansible_facts.services.firewalld.service.state
+  - debug:
+      var: services_state.ansible_facts.services["sshd.service"].state
