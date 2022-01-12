@@ -1,6 +1,6 @@
 ---
 #collect the OS distribution related data and based on distribution run the commands
-- hosts: web
+- hosts: all
   become: yes
 
   tasks:
