@@ -1,6 +1,7 @@
 ---
 #collect the OS distribution related data and based on distribution run the commands
 - hosts: all
+  user: surya
   become: yes
 
   tasks:
