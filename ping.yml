@@ -1,0 +1,8 @@
+---
+  - hosts: all
+    user: jenkins
+    become: yes
+
+    tasks:
+    - name: ping to the server
+      ping:
