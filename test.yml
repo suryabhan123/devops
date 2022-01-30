@@ -13,5 +13,5 @@
     copy: 
       src: tux
       dest: /etc/sudoers.d/tux 
-secondline
+dline
 
