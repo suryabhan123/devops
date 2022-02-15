@@ -1,0 +1,17 @@
+#setting the environment for user
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+
+  vars:
+    abc: apple
+    abc_version: 2.3
+
+  tasks:
+  - name: set the environment
+    environment:
+      path: /tmp/hosts
+#      - /Users/surya/Documents/coding/passwd
+      abc_root: "{{ abc }}"
+      PATH: '{{ abc_version }}'

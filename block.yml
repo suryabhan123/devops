@@ -3,4 +3,9 @@
     become: yes
 
     tasks:
-    blockinfile:
+    - name: add line in blockinfile
+      blockinfile:
+        path: /tmp/apple
+        block: |
+          apple mango
+          tango tiger fibre
