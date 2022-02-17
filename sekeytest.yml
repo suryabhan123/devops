@@ -1,0 +1,10 @@
+---
+  - hosts: all
+    user: surya
+    become: yes
+
+    tasks:
+    - name: 
+      fetch:
+        src: /tmp/tata
+        dest: /tmp
