@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: list the directory
+    command: ls /tmp
+    register: contents
+
+  - name: check the contents for emptiness
+    debug:
+      msg: "directory is empty"
+    when: contents.stdout == ""

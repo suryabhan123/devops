@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: list the directory
+    command: ls /tmp
+    register: result
+    ignore_errors: true
+
+  - name: if the task register is failed
+    command: ls /home
+    when: result is failed
+
+  - name: if the task register is sucess
+    command: ls /opt
+    when: result is succeeded
+
+  - name: if the task register is skipped
+    command: ls /usr
+    when: result is skipped
