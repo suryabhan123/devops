@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: set a variable if not defined
+    set_fact:
+      x: 100
+
+  - name: print the variable
+    debug:
+      msg: "{{ x }}"    

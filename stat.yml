@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: check the file/directory
+    stat:
+      path: /tmp
+    register: p
+
+  - name: asert
+    assert:
+      that:
+        - p.stat.exists and p.stat.isdir

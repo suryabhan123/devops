@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: runthe items greater then 5
+    command: echo {{ item }}
+    loop: [ 0, 2, 4, 6, 8, 10 ]
+    when: item > 5

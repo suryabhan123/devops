@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: check the file/directory
+    stat:
+      path: /tmp/test5
+    register: p
+
+  - name: create file if not there
+    file:
+      path: /tmp/test1
+      state: touch
+    when: not p.stat.exists

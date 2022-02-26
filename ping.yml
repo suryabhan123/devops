@@ -1,6 +1,6 @@
 ---
   - hosts: all
-    user: jenkins
+    user: surya
     become: yes
 
     tasks:
