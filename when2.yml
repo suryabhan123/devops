@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: register the variable
+    shell: cat /etc/motd
+    register: motd_contents
+
+  - name: use variable in statement
+    shell: echo "motd contents workd krishna"
+    when: motd_contents.stdout.find('krishna') != -1

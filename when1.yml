@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: echo
+    shell: ls /tmp
+    when: ansible_facts['os_family'] == "RedHat"

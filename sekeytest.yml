@@ -4,7 +4,7 @@
     become: yes
 
     tasks:
-    - name: 
+    - name: copy the keys
       fetch:
         src: /tmp/tata
         dest: /tmp

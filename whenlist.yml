@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: list the dir
+    command: ls /home
+    register: home_dirs
+
+  - name: create file in /tmp
+    file:
+      path: /tmp/{{ item }}
+      state: touch
+    loop: "{{ home_dirs.stdout_lines }}"
