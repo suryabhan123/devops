@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+
+  vars:
+    a: [1,2,3,4,5]
+    b: [2,3]
+
+  tasks:
+  - name: A include B
+    debug:
+      msg: "A include B"
+    when: a is superset(b)
+
+  - name: b include A
+    debug:
+      msg: "B include A"
+    when: b is superset(a)
