@@ -8,3 +8,5 @@
       fetch:
         src: /tmp/tata
         dest: /tmp
+
+...
